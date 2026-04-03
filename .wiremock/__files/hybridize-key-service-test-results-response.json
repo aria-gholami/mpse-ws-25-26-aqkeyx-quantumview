@@ -1,0 +1,198 @@
+{
+  "ram_logs": [
+    {
+      "timestamp": 1752742998.3663,
+      "kms_ram_in_mb": [
+        49.0078,
+        18.3047,
+        18.3906
+      ],
+      "hks_ram_in_mb": [
+        22.0938,
+        5.1289,
+        6.9336
+      ],
+      "relative_time": 0
+    },
+    {
+      "timestamp": 1752742999.3853,
+      "kms_ram_in_mb": [
+        49.0078,
+        18.3047,
+        18.3906
+      ],
+      "hks_ram_in_mb": [
+        22.0938,
+        5.1289,
+        6.9336
+      ],
+      "relative_time": 1.019
+    },
+    {
+      "timestamp": 1752743000.3976,
+      "kms_ram_in_mb": [
+        49.0078,
+        18.3047,
+        18.3906
+      ],
+      "hks_ram_in_mb": [
+        22.0938,
+        5.1289,
+        6.9336
+      ],
+      "relative_time": 2.0313
+    },
+    {
+      "timestamp": 1752743001.4128,
+      "kms_ram_in_mb": [
+        49.0039,
+        18.3008,
+        18.3867
+      ],
+      "hks_ram_in_mb": [
+        22.0938,
+        5.1289,
+        6.9297
+      ],
+      "relative_time": 3.0465
+    },
+    {
+      "timestamp": 1752743002.4231,
+      "kms_ram_in_mb": [
+        52.6094,
+        18.9258,
+        18.3867
+      ],
+      "hks_ram_in_mb": [
+        25.4961,
+        7.0195,
+        6.9297
+      ],
+      "relative_time": 4.0568
+    },
+    {
+      "timestamp": 1752743003.4335,
+      "kms_ram_in_mb": [
+        52.7383,
+        20.1484,
+        18.5703
+      ],
+      "hks_ram_in_mb": [
+        25.4727,
+        6.9844,
+        6.9297
+      ],
+      "relative_time": 5.0672
+    },
+    {
+      "timestamp": 1752743004.4471,
+      "kms_ram_in_mb": [
+        52.7344,
+        20.1484,
+        18.5703
+      ],
+      "hks_ram_in_mb": [
+        25.4727,
+        6.9844,
+        6.9297
+      ],
+      "relative_time": 6.0808
+    },
+    {
+      "timestamp": 1752743005.464,
+      "kms_ram_in_mb": [
+        52.7344,
+        20.1484,
+        18.5703
+      ],
+      "hks_ram_in_mb": [
+        25.4727,
+        6.9844,
+        6.9297
+      ],
+      "relative_time": 7.0977
+    },
+    {
+      "timestamp": 1752743006.4814,
+      "kms_ram_in_mb": [
+        52.7344,
+        20.1484,
+        18.5703
+      ],
+      "hks_ram_in_mb": [
+        25.4727,
+        6.9844,
+        6.9297
+      ],
+      "relative_time": 8.1151
+    }
+  ],
+  "timestamps_logs": [
+    {
+      "timestamp": 1752743002.370401,
+      "kms": "kms1",
+      "event": "start_hybridization",
+      "relative_time": 0
+    },
+    {
+      "timestamp": 1752743002.37671,
+      "kms": "kms1",
+      "event": "hks_retrieves_qkd_key_from_kms",
+      "relative_time": 0.006309
+    },
+    {
+      "timestamp": 1752743002.4084888,
+      "kms": "kms2",
+      "event": "hks_retrieves_qkd_key_from_kms",
+      "relative_time": 0.0380878
+    },
+    {
+      "timestamp": 1752743002.4108014,
+      "kms": "kms2",
+      "event": "hks_announces_hybridized_key",
+      "relative_time": 0.0404004
+    },
+    {
+      "timestamp": 1752743002.4117157,
+      "kms": "kms1",
+      "event": "start_encrypting_with_hybridized_key",
+      "relative_time": 0.0413147
+    },
+    {
+      "timestamp": 1752743002.4226136,
+      "kms": "kms1",
+      "event": "sending_key_to_next_kms",
+      "relative_time": 0.0522126
+    },
+    {
+      "timestamp": 1752743002.423831,
+      "kms": "kms2",
+      "event": "receiving_key_from_previous_kms",
+      "relative_time": 0.05343
+    },
+    {
+      "timestamp": 1752743002.4270794,
+      "kms": "kms2",
+      "event": "decrypted_key_with_hybridized_key",
+      "relative_time": 0.0566784
+    },
+    {
+      "timestamp": 1752743002.4293652,
+      "kms": "kms2",
+      "event": "sending_key_to_next_kms",
+      "relative_time": 0.0589642
+    },
+    {
+      "timestamp": 1752743002.4308066,
+      "kms": "kms3",
+      "event": "receiving_key_from_previous_kms",
+      "relative_time": 0.0604056
+    },
+    {
+      "timestamp": 1752743002.4308317,
+      "kms": "kms3",
+      "event": "key_exchange_finished",
+      "relative_time": 0.0604307
+    }
+  ]
+}

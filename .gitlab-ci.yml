@@ -1,0 +1,100 @@
+stages:
+  - prettier_check
+  - build_quantumview_image
+  - build_cms_image
+  - cypress_e2e_test
+  - deploy_website
+
+prettier_check:
+  stage: prettier_check
+  image: node:24-alpine
+  script:
+    - npm ci
+    - npm run prettier:check
+
+build_quantumview_image:
+  stage: build_quantumview_image
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
+  tags:
+    - quantumview
+  script:
+    - VERSION=$(cat package.json | grep '"version":' | sed -E 's/.*"([0-9]+\.[0-9]+\.[0-9]+)".*/v\1/')
+    - docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+    - docker build -t "$CI_REGISTRY_IMAGE:$VERSION" .
+    - docker tag "$CI_REGISTRY_IMAGE:$VERSION" "$CI_REGISTRY_IMAGE:latest"
+    - docker push "$CI_REGISTRY_IMAGE:$VERSION"
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+
+build_cms_image:
+  stage: build_cms_image
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+    CMS_IMAGE_NAME: "$CI_REGISTRY_IMAGE/cms"
+  services:
+    - docker:dind
+  tags:
+    - quantumview
+  script:
+    - VERSION=$(cat package.json | grep '"version":' | sed -E 's/.*"([0-9]+\.[0-9]+\.[0-9]+)".*/v\1/')
+    - docker login -u gitlab-ci-token -p "$CI_JOB_TOKEN" "$CI_REGISTRY"
+    - cd cms
+    - docker build -f Dockerfile.prod -t "$CMS_IMAGE_NAME:$VERSION" .
+    - docker tag "$CMS_IMAGE_NAME:$VERSION" "$CMS_IMAGE_NAME:latest"
+    - docker push "$CMS_IMAGE_NAME:$VERSION"
+    - docker push "$CMS_IMAGE_NAME:latest"
+
+cypress_e2e_test:
+  stage: cypress_e2e_test
+  image: docker:latest
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:dind
+  tags:
+    - quantumview
+  script:
+    - cp .env.preview .env.local
+    - cd .docker
+    - docker compose -p 'quantum-view' build --no-cache
+    - docker compose -p 'quantum-view' up -d reverse-proxy wiremock websocketmock quantumview
+    - docker compose -p 'quantum-view' run --rm cypress
+  after_script:
+    - cd .docker || true
+    - docker compose -p 'quantum-view' logs --no-color || true
+    - docker compose -p 'quantum-view' down -v || true
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - .cypress/screenshots/
+      - .cypress/videos/
+
+deploy_website:
+  stage: deploy_website
+  image: alpine/ansible:latest
+  before_script:
+    - apk update
+    - apk add openssh
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - ssh-add ~/.ssh/id_ed25519
+  script:
+    - |
+      ansible-playbook -i .deploy/hosts.ini --become --become-user=root .deploy/server.yaml \
+      -e "ci_job_token=$CI_JOB_TOKEN ci_registry=$CI_REGISTRY" \
+      -e "mysql_root_password=$MYSQL_ROOT_PASSWORD" \
+      -e "mysql_quantumview_password=$MYSQL_QUANTUMVIEW_PASSWORD"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      when: on_success
+    - when: never

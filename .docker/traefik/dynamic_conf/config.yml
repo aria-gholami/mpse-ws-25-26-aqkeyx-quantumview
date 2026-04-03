@@ -1,0 +1,10 @@
+tls:
+  certificates:
+    - certFile: /certs/quantumview.local.crt
+      keyFile: /certs/quantumview.local.key
+    - certFile: /certs/wiremock.local.crt
+      keyFile: /certs/wiremock.local.key
+    - certFile: /certs/websocketmock.local.crt
+      keyFile: /certs/websocketmock.local.key
+    - certFile: /certs/traefik.quantumview.local.crt
+      keyFile: /certs/traefik.quantumview.local.key

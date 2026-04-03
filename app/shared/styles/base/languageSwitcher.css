@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+.language-switcher {
+    @apply inline-flex rounded-full border border-slate-300 bg-white text-slate-700 shadow;
+}
+
+.language-switcher__button {
+    @apply px-4 py-2 text-sm font-semibold transition-colors duration-200 select-none;
+}
+
+.language-switcher__button:not(.language-switcher__button--active) {
+    @apply hover:bg-slate-100;
+}
+
+.language-switcher__button--active {
+    @apply bg-slate-900 text-white;
+}
+
+.language-switcher__button:first-child {
+    @apply border-r border-slate-200;
+}

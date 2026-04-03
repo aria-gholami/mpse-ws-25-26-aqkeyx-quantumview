@@ -1,0 +1,15 @@
+.screen-container {
+    @apply m-4 md:mr-20 md:ml-20 md:mt-4 md:mb-4;
+}
+
+.main-container {
+    @apply flex flex-col md:flex-row gap-5;
+}
+
+.card-container {
+    @apply flex-1 rounded-xl bg-primary shadow-lg border border-gray-200 border-b-4 border-b-black p-6 text-slate-700;
+}
+
+.card-container ol {
+    @apply mt-4 list-decimal space-y-1 pl-5;
+}

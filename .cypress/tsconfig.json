@@ -1,0 +1,23 @@
+{
+  "include": ["**/*.ts"],
+  "compilerOptions": {
+    "lib": ["DOM", "DOM.Iterable", "esnext"],
+    "types": ["cypress", "node"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "rootDirs": [
+      "../.docker/cypress", "./.react-router/types"],
+    "baseUrl": "../.docker/cypress",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}

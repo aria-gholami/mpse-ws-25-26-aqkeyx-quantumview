@@ -1,0 +1,29 @@
+.overlay-loading-spinner-overlay-container {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-3000 transition-opacity
+    duration-200 ease-out motion-reduce:transition-none;
+}
+
+.overlay-loading-spinner-container {
+    @apply flex flex-col items-center text-white space-y-4 transition-all duration-200 ease-out
+    motion-reduce:transition-none;
+}
+
+.overlay-loading-spinner {
+    @apply w-14 h-14 border-4 border-white/30 border-t-white rounded-full animate-spin;
+}
+
+.overlay-loading-spinner-text {
+    @apply text-xl font-medium text-white;
+}
+
+.loading-spinner-container {
+    @apply flex flex-col items-center justify-center py-12 text-gray-500;
+}
+
+.loading-spinner {
+    @apply h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-black;
+}
+
+.loading-spinner-text {
+    @apply mt-3 text-sm;
+}

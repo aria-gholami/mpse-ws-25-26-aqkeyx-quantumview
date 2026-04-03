@@ -1,0 +1,101 @@
+{
+  "id": "d87cca31-701b-4daa-b43f-ea55a82ef581",
+  "nodeType": 1,
+  "type": "page",
+  "template": "homepage",
+  "content": {
+    "title": "Laningpage",
+    "url": "\/landingpage",
+    "newsItems": [
+      {
+        "type": "newsItem",
+        "settings": {},
+        "date": "2026-01-27",
+        "category": "Publications",
+        "title": "Test",
+        "description": "Tester",
+        "host": "Tester",
+        "image": {
+          "id": 1,
+          "locale": "en",
+          "collection": 7,
+          "size": 166325,
+          "mimeType": "image\/png",
+          "title": "background",
+          "version": 1,
+          "subVersion": 0,
+          "name": "background.png",
+          "type": {
+            "name": "image",
+            "id": 2
+          },
+          "isImage": true,
+          "isVideo": false,
+          "isAudio": false,
+          "isDocument": false,
+          "publishLanguages": [],
+          "contentLanguages": [],
+          "tags": [],
+          "url": "\/media\/1\/download\/background.png?v=1",
+          "changed": "2026-01-27T17:12:00",
+          "changer": "Aria Gholami",
+          "created": "2026-01-27T17:12:00",
+          "creator": "Aria Gholami",
+          "properties": {
+            "width": 1600,
+            "height": 900
+          },
+          "categories": [],
+          "targetGroups": [],
+          "formatPreferredExtension": "png",
+          "formatUri": "\/uploads\/media\/{format}\/01\/1-background.{extension}?v=1-0"
+        },
+        "newsLink": "https://google.de"
+      }
+    ]
+  },
+  "view": {
+    "title": [],
+    "url": [],
+    "newsItems": [
+      {
+        "date": [],
+        "category": [],
+        "title": [],
+        "description": [],
+        "host": [],
+        "image": {
+          "id": 1,
+          "displayOption": null
+        }
+      }
+    ]
+  },
+  "author": "1",
+  "authored": "2026-01-27T17:23:50+0000",
+  "changer": 1,
+  "changed": "2026-01-27T17:47:38+0000",
+  "creator": 1,
+  "created": "2026-01-27T17:23:50+0000",
+  "extension": {
+    "seo": {
+      "title": "",
+      "description": "",
+      "keywords": "",
+      "canonicalUrl": "",
+      "noIndex": false,
+      "noFollow": false,
+      "hideInSitemap": false
+    },
+    "excerpt": {
+      "title": "",
+      "more": "",
+      "description": "",
+      "categories": [],
+      "tags": [],
+      "segments": [],
+      "icon": [],
+      "images": []
+    }
+  }
+}

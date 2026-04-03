@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+@import '../app.css';
+
+.news-container {
+    @apply mt-5 space-y-3;
+}
+
+.news-container article {
+    @apply rounded-xl border border-black/10 bg-white/70 p-4 shadow-sm;
+}
+
+.news-container-clickable-article {
+    @apply cursor-pointer transition-transform duration-300 transform
+    focus:outline-none focus:ring-2 focus:ring-lime-300 cursor-pointer
+    active:bg-primary active:-translate-y-1 hover:bg-secondary;
+}
+
+.contact-container {
+    @apply mt-4 rounded-xl border border-gray-200 bg-gray-100 p-6 shadow-lg border-b-4 border-b-black;
+}
+
+.contact-link {
+    @apply font-semibold hover:text-blue-600;
+}

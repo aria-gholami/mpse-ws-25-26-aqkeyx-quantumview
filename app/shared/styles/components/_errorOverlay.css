@@ -1,0 +1,21 @@
+.error-overlay-container {
+    @apply fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-3000 p-4 overflow-y-auto
+    transition-opacity duration-200 ease-out motion-reduce:transition-none;
+}
+
+.error-overlay {
+    @apply w-full max-w-md rounded-xl bg-primary shadow-lg border border-gray-200 border-b-4 border-b-black p-5 sm:p-6
+    text-slate-700 mx-auto transition-transform transition-opacity duration-200 ease-out motion-reduce:transition-none;
+}
+
+.error-overlay-header {
+    @apply text-xl sm:text-2xl font-semibold text-red-600 mb-3 sm:mb-4;
+}
+
+.error-overlay-description {
+    @apply text-slate-700 text-base sm:text-lg leading-relaxed mb-5 sm:mb-6;
+}
+
+.error-overlay-button-container {
+    @apply flex flex-col sm:flex-row gap-3 sm:gap-4 justify-end;
+}

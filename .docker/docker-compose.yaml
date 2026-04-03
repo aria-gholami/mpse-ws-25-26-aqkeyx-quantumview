@@ -1,0 +1,95 @@
+services:
+  reverse-proxy:
+    container_name: reverse-proxy
+    restart: unless-stopped
+    image: traefik:latest
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      default:
+        aliases:
+          - quantumview.local
+          - traefik.quantumview.local
+          - wiremock.local
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./traefik/dynamic_conf/config.yml:/etc/traefik/dynamic_conf/config.yml:ro
+      - ./certs:/certs:ro
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.traefik.rule=Host(`traefik.quantumview.local`)'
+      - 'traefik.http.routers.api.entrypoints=https'
+      - 'traefik.http.routers.prometheus.entrypoints=https'
+      - 'traefik.http.routers.traefik.tls=true'
+      - 'traefik.http.routers.traefik.service=api@internal'
+    depends_on:
+      - quantumview
+      - wiremock
+      - websocketmock
+
+  quantumview:
+    container_name: quantumview
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    networks:
+      - default
+    volumes:
+      - ./quantumview/default.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.quantumview.entrypoints=https'
+      - 'traefik.http.routers.quantumview.rule=Host(`quantumview.local`) || Host(`www.quantumview.local`)'
+      - 'traefik.http.routers.quantumview.tls=true'
+      - 'traefik.http.services.quantumview.loadbalancer.server.port=8000'
+
+  wiremock:
+    container_name: wiremock
+    image: wiremock/wiremock:3.13.2
+    networks:
+      - default
+    volumes:
+      - ./../.wiremock/mappings:/home/wiremock/mappings
+      - ./../.wiremock/__files:/home/wiremock/__files
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.wiremock.entrypoints=https'
+      - 'traefik.http.routers.wiremock.rule=Host(`wiremock.local`)'
+      - 'traefik.http.routers.wiremock.tls=true'
+      - 'traefik.http.services.wiremock.loadbalancer.server.port=8080'
+
+  websocketmock:
+    container_name: websocketmock
+    restart: unless-stopped
+    build:
+      context: ../.websocketmock
+      dockerfile: Dockerfile
+    networks:
+      - default
+    ports:
+      - '8001:8001'
+    volumes:
+      - ./../.websocketmock:/app
+      - websocketmock_node_modules:/app/node_modules
+
+  cypress:
+    container_name: cypress
+    image: cypress/base:24.12.0
+    working_dir: /e2e
+    networks:
+      - default
+    volumes:
+      - ./../.cypress:/e2e
+      - cypress_cache:/root/.cache/Cypress
+    environment:
+      - CYPRESS_baseUrl=https://quantumview.local
+    depends_on:
+      - reverse-proxy
+    command: >
+      sh -lc "npm ci && npx cypress run --browser electron"
+
+volumes:
+  websocketmock_node_modules:
+  cypress_cache:

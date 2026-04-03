@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+.react-flow-container {
+    @apply flex h-[450px] w-full;
+}
+
+.react-flow-handle {
+    @apply !w-2 !h-2 !bg-blue-500;
+}

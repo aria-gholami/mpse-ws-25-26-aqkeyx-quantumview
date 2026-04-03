@@ -1,0 +1,143 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>landingpage</key>
+
+    <view>pages/landingpage</view>
+    <controller>Sulu\Bundle\HeadlessBundle\Controller\HeadlessWebsiteController::indexAction</controller>
+    <cacheLifetime>86400</cacheLifetime>
+
+    <meta>
+        <title lang="en">Landingpage</title>
+        <title lang="de">Startseite</title>
+    </meta>
+
+    <properties>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+                <title lang="de">Titel</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="url" type="route" mandatory="true">
+            <meta>
+                <title lang="en">Resourcelocator</title>
+                <title lang="de">Adresse</title>
+            </meta>
+
+            <tag name="sulu.rlp"/>
+        </property>
+
+        <section name="news">
+            <meta>
+                <title lang="en">News</title>
+                <title lang="de">Veranstaltungen</title>
+            </meta>
+
+            <properties>
+                <block name="newsItems" default-type="newsItem" minOccurs="0" maxOccurs="10">
+                    <meta>
+                        <title lang="en">News Items</title>
+                        <title lang="de">News-Einträge</title>
+                    </meta>
+
+                    <types>
+                        <type name="newsItem">
+                            <meta>
+                                <title lang="en">News Item</title>
+                                <title lang="de">News-Eintrag</title>
+                            </meta>
+                            <properties>
+                                <property name="date" type="date" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Date</title>
+                                        <title lang="de">Datum</title>
+                                    </meta>
+                                </property>
+                                <property name="category" type="single_select" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Category</title>
+                                        <title lang="de">Kategorie</title>
+                                    </meta>
+                                    <params>
+                                        <param name="values" type="collection">
+                                            <param name="Project">
+                                                <meta>
+                                                    <title lang="en">Project</title>
+                                                    <title lang="de">Projekt</title>
+                                                </meta>
+                                            </param>
+                                            <param name="Publication">
+                                                <meta>
+                                                    <title lang="en">Publication</title>
+                                                    <title lang="de">Publikation</title>
+                                                </meta>
+                                            </param>
+                                            <param name="Teaching">
+                                                <meta>
+                                                    <title lang="en">Teaching</title>
+                                                    <title lang="de">Lehre</title>
+                                                </meta>
+                                            </param>
+                                        </param>
+                                    </params>
+                                </property>
+
+                                <property name="title" type="text_line" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Title</title>
+                                        <title lang="de">Titel</title>
+                                    </meta>
+                                </property>
+
+                                <property name="description" type="text_area" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Description</title>
+                                        <title lang="de">Beschreibung</title>
+                                    </meta>
+                                </property>
+
+                                <property name="host" type="text_line" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Host</title>
+                                        <title lang="de">Veranstalter</title>
+                                    </meta>
+                                </property>
+
+                                <property name="image" type="single_media_selection">
+                                    <meta>
+                                        <title lang="en">Image</title>
+                                        <title lang="de">Bild</title>
+                                    </meta>
+                                    <params>
+                                        <param name="types" value="image"/>
+                                    </params>
+                                </property>
+                                <property name="newsLink" type="url">
+                                    <meta>
+                                        <title lang="en">News Link</title>
+                                        <title lang="de">News Link</title>
+                                    </meta>
+                                    <params>
+                                        <param name="schemes" type="collection">
+                                            <param name="http://"/>
+                                            <param name="https://"/>
+                                        </param>
+                                    </params>
+                                </property>
+                            </properties>
+                        </type>
+                    </types>
+                </block>
+            </properties>
+        </section>
+    </properties>
+</template>

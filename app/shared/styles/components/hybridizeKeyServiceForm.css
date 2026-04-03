@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+
+.hybridize-key-service-form-container {
+    @apply grid grid-cols-1 gap-3;
+}
+
+.hybridize-key-service-form-button-container {
+    @apply flex items-center justify-end gap-3 pt-2;
+}
+
+.hybridize-key-service-form-checkbox-container {
+    @apply flex flex-row items-center gap-2;
+}
+
+.hybridize-key-service-form-buttons-container {
+    @apply flex flex-col sm:flex-row gap-4;
+}
+
+.hybridize-key-service-form-kms-summary {
+    .MuiAccordionSummary-content,
+    .MuiAccordionSummary-contentGutters {
+        @apply items-center my-0;
+    }
+
+    .hybridize-key-service-form-kms-actions {
+        @apply ml-auto flex items-center gap-1;
+    }
+}

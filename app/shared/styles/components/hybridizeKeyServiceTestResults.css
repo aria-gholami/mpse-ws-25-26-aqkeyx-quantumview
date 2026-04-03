@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+.hybridize-key-service-test-results-container {
+    @apply m-6 max-w-7xl mx-auto min-h-[calc(100vh-200px)] md:m-4;
+}
+
+.hybridize-key-service-test-results-header {
+    @apply mb-12 text-center;
+}
+
+.hybridize-key-service-test-results-content-wrapper {
+    @apply flex flex-col gap-10;
+}
+
+.hybridize-key-service-test-results-ram-logs-section {
+    @apply bg-white/80 backdrop-blur-[20px] backdrop-saturate-[180%] border border-black/10 rounded-[20px] p-10 shadow-[0_4px_30px_var(--color-shadow-soft),0_1px_3px_var(--color-shadow-subtle)] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:shadow-[0_8px_40px_var(--color-shadow-strong),0_2px_8px_var(--color-shadow-soft)] hover:-translate-y-0.5 md:p-6 md:rounded-2xl;
+}
+
+.hybridize-key-service-test-results-ram-logs-description {
+    @apply text-base text-gray-500 leading-relaxed mb-6;
+}
+
+.hybridize-key-service-test-results-ram-logs-chart-container {
+    @apply w-full mt-6 p-4 bg-white/50 rounded-2xl border border-black/5;
+}
+
+.hybridize-key-service-test-results-timestamp-logs-section {
+    @apply mt-6 pt-8 border-t border-black/10;
+}
+
+.hybridize-key-service-test-results-timestamp-logs-count {
+    @apply text-sm mb-2 text-gray-500;
+}

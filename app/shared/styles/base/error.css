@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+.error-container {
+    @apply text-center bg-primary p-10 shadow-xl text-slate-700;
+}
+
+.error-container p {
+    @apply text-lg;
+}
+
+.error-container h1 {
+    @apply mt-4 text-5xl font-semibold;
+}
+
+.error-container div {
+    @apply mt-10 flex items-center justify-center gap-x-6;
+}
+
+.error-container div a {
+    @apply text-sm font-semibold hover:text-blue-600 transition-all duration-300;
+}

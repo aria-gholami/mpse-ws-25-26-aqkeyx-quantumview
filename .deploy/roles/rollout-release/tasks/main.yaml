@@ -1,0 +1,44 @@
+---
+- name: Copy files to remote server
+  copy:
+    src: .
+    dest: /home/ubuntu/
+
+- name: Add read permission for others to reverse-proxy/.htpasswd
+  file:
+    path: /home/ubuntu/quantumview/reverse-proxy/.htpasswd
+    mode: o+r
+
+- name: Write MySQL root password to secret file
+  copy:
+      dest: /home/ubuntu/quantumview/secrets/mysql_root_password.txt
+      mode: 0644
+      content: "{{ mysql_root_password }}"
+
+- name: Write MySQL quantumview password to secret file
+  copy:
+      dest: /home/ubuntu/quantumview/secrets/mysql_quantumview_password.txt
+      mode: 0644
+      content: "{{ mysql_quantumview_password }}"
+
+- name: Docker login to GitLab registry with CI token
+  shell: |
+    echo "{{ ci_job_token }}" | docker login "{{ ci_registry }}" -u gitlab-ci-token --password-stdin
+
+- name: Ensure external docker network exists
+  command: docker network create quantumview-aqkeyx-benchmark-network
+  register: net_create
+  changed_when: net_create.rc == 0
+  failed_when: net_create.rc != 0 and ("already exists" not in net_create.stderr)
+
+- name: Ensure script file is executable by user
+  file:
+    path: /home/ubuntu/quantumview/rollout-release.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: u+x
+
+- name: Run the bash script
+  args:
+    chdir: /home/ubuntu/quantumview
+  command: /bin/bash /home/ubuntu/quantumview/rollout-release.sh

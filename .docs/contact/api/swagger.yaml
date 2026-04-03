@@ -1,0 +1,90 @@
+openapi: 3.0.3
+info:
+  title: Contact API
+  version: 1.0.0
+  description: API fuer den Versand des Kontaktformulars.
+servers:
+  - url: http://141.100.237.231/cms
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: api-key
+
+paths:
+  /api/v1/contact:
+    post:
+      summary: Kontaktformular senden
+      description: Sendet eine Kontaktformular-Anfrage und triggert den Mailversand im cms Container.
+      security:
+        - ApiKeyAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - message
+              properties:
+                name:
+                  type: string
+                  example: Max Mustermann
+                email:
+                  type: string
+                  format: email
+                  example: max@example.com
+                organization:
+                  type: string
+                  example: Example GmbH
+                topic:
+                  type: string
+                  example: Anfrage zur Zusammenarbeit
+                message:
+                  type: string
+                  example: Hallo, ich habe eine Frage zum Kontaktformular.
+      responses:
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Success.
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Bad Request.
+        "401":
+          description: Unauthorized - Missing or invalid API Key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Unauthorized.
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.

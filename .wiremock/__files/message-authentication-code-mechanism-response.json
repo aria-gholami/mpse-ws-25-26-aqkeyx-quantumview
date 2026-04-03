@@ -1,0 +1,7 @@
+{
+  "options": [
+    "HMAC",
+    "HMAC1",
+    "HMAC2"
+  ]
+}

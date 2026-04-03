@@ -1,0 +1,22 @@
+services:
+  wiremock:
+    container_name: ddev-${DDEV_SITENAME}-wiremock
+    restart: unless-stopped
+    image: wiremock/wiremock:3.13.2
+    volumes:
+      - ./../.wiremock/mappings:/home/wiremock/mappings
+      - ./../.wiremock/__files:/home/wiremock/__files
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=8000:8000
+      - HTTPS_EXPOSE=8000:8000
+    command: [ "--port=8000", "--bind-address=0.0.0.0" ]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/__admin/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<template xmlns="http://schemas.sulu.io/template/template"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://schemas.sulu.io/template/template http://schemas.sulu.io/template/template-1.0.xsd">
+
+    <key>related-works</key>
+
+    <view>pages/relatedWorks</view>
+    <controller>Sulu\Bundle\HeadlessBundle\Controller\HeadlessWebsiteController::indexAction</controller>
+    <cacheLifetime>86400</cacheLifetime>
+
+    <meta>
+        <title lang="en">Related Works</title>
+        <title lang="de">Verwandte Arbeiten</title>
+    </meta>
+
+    <properties>
+        <property name="title" type="text_line" mandatory="true">
+            <meta>
+                <title lang="en">Title</title>
+                <title lang="de">Titel</title>
+            </meta>
+            <params>
+                <param name="headline" value="true"/>
+            </params>
+
+            <tag name="sulu.rlp.part"/>
+        </property>
+
+        <property name="url" type="route" mandatory="true">
+            <meta>
+                <title lang="en">Resourcelocator</title>
+                <title lang="de">Adresse</title>
+            </meta>
+
+            <tag name="sulu.rlp"/>
+        </property>
+
+        <section name="relatedWorks">
+            <meta>
+                <title lang="en">Related Works</title>
+                <title lang="de">Verwandte Arbeiten</title>
+            </meta>
+
+            <properties>
+                <block name="relatedWorksItems" default-type="relatedWorkItem" minOccurs="0" maxOccurs="100">
+                    <meta>
+                        <title lang="en">Related Works Items</title>
+                        <title lang="de">Verwandte Arbeiten Einträge</title>
+                    </meta>
+
+                    <types>
+                        <type name="relatedWorkItem">
+                            <meta>
+                                <title lang="en">Related Work Item</title>
+                                <title lang="de">Verwandte Arbeiten Eintrag</title>
+                            </meta>
+                            <properties>
+                                <property name="title" type="text_line" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Title</title>
+                                        <title lang="de">Titel</title>
+                                    </meta>
+                                </property>
+
+                                <property name="description" type="text_area" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Description</title>
+                                        <title lang="de">Beschreibung</title>
+                                    </meta>
+                                </property>
+
+                                <property name="author" type="text_line" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Author</title>
+                                        <title lang="de">Autor</title>
+                                    </meta>
+                                </property>
+
+                                <property name="relatedWorkLink" type="url" mandatory="true">
+                                    <meta>
+                                        <title lang="en">Related Work Link</title>
+                                        <title lang="de">Verwandte Arbeiten Link</title>
+                                    </meta>
+                                    <params>
+                                        <param name="schemes" type="collection">
+                                            <param name="http://"/>
+                                            <param name="https://"/>
+                                        </param>
+                                    </params>
+                                </property>
+                            </properties>
+                        </type>
+                    </types>
+                </block>
+            </properties>
+        </section>
+    </properties>
+</template>

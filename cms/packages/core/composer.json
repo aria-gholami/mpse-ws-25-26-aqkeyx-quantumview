@@ -1,0 +1,21 @@
+{
+    "name": "quantum-view/core",
+    "description": "Core package for QuantumView",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "QuantumView\\Core\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "QuantumView\\Core\\Tests": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hochschule Darmstadt"
+        }
+    ],
+    "require": {}
+}

@@ -1,0 +1,4 @@
+App\Controller\Api\V1\Contact\FormSendController:
+    path: /api/v1/contact
+    controller: App\Controller\Api\V1\Contact\FormSendController
+    methods: ['POST', 'OPTIONS']

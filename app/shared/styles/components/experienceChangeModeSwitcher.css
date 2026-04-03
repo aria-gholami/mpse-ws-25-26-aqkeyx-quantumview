@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+
+.experience-change-mode-toggle-container {
+    @apply flex flex-col sm:flex-row justify-center gap-6 mb-6 w-full;
+}
+
+.experience-change-mode-description {
+    @apply mt-1 text-center max-w-2xl mx-auto;
+}
+
+.experience-change-mode-description-placeholder {
+    @apply mt-1 italic text-center text-gray-500;
+}

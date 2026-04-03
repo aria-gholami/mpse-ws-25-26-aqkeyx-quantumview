@@ -1,0 +1,39 @@
+@utility custom-scrollbar {
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--color-scrollbar-track);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--color-scrollbar-thumb);
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: var(--color-scrollbar-thumb-hover);
+    }
+}
+
+.animation-list-container {
+    @apply space-y-3 flex flex-col max-h-[400px] overflow-y-auto custom-scrollbar pt-5 pb-5;
+}
+
+.animation-list-item {
+    @apply flex items-center gap-3 p-3.5 bg-[color:var(--color-primary)] border border-black/10 rounded-xl transition-all duration-200 hover:bg-white/90 hover:border-black/10 hover:translate-x-1 md:gap-2;
+}
+
+.animation-list-tag {
+    @apply px-3 py-1 rounded-full text-[10px] font-bold text-white min-w-[50px] text-center tracking-wider shadow-sm;
+}
+
+.animation-list-time {
+    @apply text-sm font-mono text-black min-w-[80px] md:min-w-0;
+}
+
+.animation-list-text {
+    @apply text-sm flex-1 font-medium text-black capitalize;
+}

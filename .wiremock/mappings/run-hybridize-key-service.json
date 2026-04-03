@@ -1,0 +1,104 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/run",
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "experiment_name": "Success",
+              "kms_configs": [
+                {
+                  "key_exchange_mechanism": "FrodoKEM_976_AES",
+                  "message_authentication_code_mechanism": "HMAC",
+                  "message_authentication_code_underlying_function": "SHA256",
+                  "should_use_hybridization": true
+                },
+                {
+                  "key_exchange_mechanism": "FrodoKEM_976_AES",
+                  "message_authentication_code_mechanism": "HMAC",
+                  "message_authentication_code_underlying_function": "SHA256",
+                  "should_use_hybridization": true
+                }
+              ],
+              "should_be_logged": true
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "run-hybridize-key-service-response.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "POST",
+        "url": "/api/v1/run",
+        "headers": {
+          "Content-Type": {
+            "equalTo": "application/json"
+          }
+        },
+        "bodyPatterns": [
+          {
+            "equalToJson": {
+              "experiment_name": "Invalid",
+              "kms_configs": [
+                {
+                  "key_exchange_mechanism": "FrodoKEM_976_AES",
+                  "message_authentication_code_mechanism": "HMAC",
+                  "message_authentication_code_underlying_function": "SHA256",
+                  "should_use_hybridization": true
+                },
+                {
+                  "key_exchange_mechanism": "FrodoKEM_976_AES",
+                  "message_authentication_code_mechanism": "HMAC",
+                  "message_authentication_code_underlying_function": "SHA256",
+                  "should_use_hybridization": true
+                }
+              ],
+              "should_be_logged": true
+            }
+          }
+        ]
+      },
+      "response": {
+        "status": 500,
+        "body": "{ \"errorMessage\": \"Internal Server Error.\" }",
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "OPTIONS",
+        "url": "/api/v1/run"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    }
+  ]
+}

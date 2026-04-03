@@ -1,0 +1,18 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "Cypress",
+  "license": "ISC",
+  "author": "Hochschule Darmstadt",
+  "type": "module",
+  "dependencies": {
+    "cypress": "^15.8.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "volta": {
+    "node": "24.12.0",
+    "npm": "11.7.0"
+  }
+}

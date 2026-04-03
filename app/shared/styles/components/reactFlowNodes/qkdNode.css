@@ -1,0 +1,17 @@
+@import 'tailwindcss';
+
+.qkd-node-container {
+    @apply flex flex-col items-center text-slate-700;
+}
+
+.qkd-node-container h3 {
+    @apply text-lg font-semibold mb-2;
+}
+
+.qkd-node-small {
+    @apply w-[500px] h-[400px] border-2 border-dashed border-black rounded bg-white/10 flex items-center justify-center;
+}
+
+.qkd-node-big {
+    @apply w-[1000px] h-[400px] border-2 border-dashed border-black rounded bg-white/10 flex items-center justify-center;
+}

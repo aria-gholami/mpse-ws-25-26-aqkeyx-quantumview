@@ -1,0 +1,10 @@
+---
+- hosts: server
+  name: Install docker
+  roles:
+    - { role: install-docker, tags: install-docker }
+
+- hosts: server
+  name: Rollout release
+  roles:
+    - { role: rollout-release, tags: rollout-release }

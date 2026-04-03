@@ -1,0 +1,90 @@
+# yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
+
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+# See also https://symfony.com/doc/current/service_container/import.html
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    default_locale: en
+    log_level: '%env(LOG_LEVEL)%'
+    sulu_admin_email: '%env(SULU_ADMIN_EMAIL)%'
+    api_key: '%env(API_KEY)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: false      # Automatically injects dependencies in your services.
+        autoconfigure: false # Automatically registers your services as commands, event subscribers, etc.
+
+    App\Controller\Api\V1\Contact\FormSendController:
+        arguments:
+            - '@App\Contact\FormSendHandler'
+            - '@api.v1.contact.logger'
+        tags:
+            - { name: 'controller.service_arguments' }
+    App\Contact\FormSendHandler:
+        arguments:
+            - '@mailer.mailer'
+            - '%sulu_admin_email%'
+
+    App\Security\ValidateApiKeySubscriber:
+        arguments:
+            - '@App\Security\DefaultApiKeyValidator'
+            - '@api.v1.authentication.logger'
+        tags:
+            - { name: kernel.event_subscriber }
+    App\Security\DefaultApiKeyValidator:
+        arguments:
+            - '%api_key%'
+            - '@api.v1.authentication.logger'
+
+    api.v1.contact.logging-handler:
+        class: Monolog\Handler\RotatingFileHandler
+        arguments:
+            - '%kernel.logs_dir%/contact_%kernel.environment%.log'
+            - 14
+            - '%log_level%'
+            - true
+            - 436
+    api.v1.contact.logger:
+        class: Monolog\Logger
+        arguments:
+            - 'contact'
+        calls:
+            - [ pushHandler, [ '@api.v1.contact.logging-handler' ] ]
+    api.v1.authentication.logging-handler:
+        class: Monolog\Handler\RotatingFileHandler
+        arguments:
+            - '%kernel.logs_dir%/authentication_%kernel.environment%.log'
+            - 14
+            - '%log_level%'
+            - true
+            - 436
+    api.v1.authentication.logger:
+        class: Monolog\Logger
+        arguments:
+            - 'authentication'
+        calls:
+            - [ pushHandler, [ '@api.v1.authentication.logging-handler' ] ]
+
+    App\DataFixtures\LandingpageFixture:
+        arguments:
+            - '@messenger.routable_message_bus'
+        tags:
+            - 'doctrine.fixture.orm'
+
+    App\DataFixtures\NewsFixture:
+        arguments:
+            - '@messenger.routable_message_bus'
+            - '@sulu_page.page_repository'
+        tags:
+            - 'doctrine.fixture.orm'
+
+    App\DataFixtures\RelatedWorksFixture:
+        arguments:
+            - '@messenger.routable_message_bus'
+            - '@sulu_page.page_repository'
+        tags:
+            - 'doctrine.fixture.orm'

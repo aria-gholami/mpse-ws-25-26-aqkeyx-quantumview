@@ -1,0 +1,12 @@
+.react-router
+build
+node_modules
+README.md
+.deploy
+.docker
+.gitlab-ci.yml
+.prettierrc
+.websocketmock
+.wiremock
+.cypress
+.ddev

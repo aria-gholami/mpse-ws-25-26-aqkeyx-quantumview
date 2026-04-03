@@ -1,0 +1,45 @@
+@import '../app.css';
+
+.agile-q-key-exchange-container {
+    @apply rounded-xl bg-primary shadow-lg border border-gray-200 border-b-4 border-b-black p-6 flex flex-col items-center mt-6 text-slate-700;
+}
+
+.info-text-container {
+    @apply flex flex-col items-center;
+}
+
+.agile-q-key-exchange-container div {
+    @apply leading-relaxed text-center;
+}
+
+.agile-q-key-exchange-container div h3 {
+    @apply text-2xl font-bold;
+}
+
+.key-exchange-buttons-container {
+    @apply flex flex-col;
+}
+
+.key-exchange-mechanism-module-node-container {
+    @apply bg-white border border-gray-300 rounded shadow-md px-4 py-2 text-sm text-gray-800;
+}
+
+.key-combination-container {
+    @apply relative w-[50px] h-[50px];
+}
+
+.key-combination-container svg {
+    @apply absolute top-0 left-0 w-full h-full;
+}
+
+.read-more-hint-container {
+    @apply cursor-pointer inline-flex text-blue-500 text-xs select-none;
+}
+
+.read-more-hint-icon {
+    @apply ml-0.5 h-4 w-4;
+}
+
+.read-more-hint {
+    @apply p-10 overflow-y-auto max-h-[70vh];
+}

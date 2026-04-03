@@ -1,0 +1,11 @@
+<h2>Neue Kontaktanfrage</h2>
+
+<ul>
+    <li><strong>Name:</strong> {{ contact.name }}</li>
+    <li><strong>E-Mail:</strong> {{ contact.email }}</li>
+    <li><strong>Organisation:</strong> {{ contact.organization }}</li>
+    <li><strong>Thema:</strong> {{ contact.topic }}</li>
+</ul>
+
+<p><strong>Nachricht:</strong></p>
+<p>{{ contact.message|nl2br }}</p>

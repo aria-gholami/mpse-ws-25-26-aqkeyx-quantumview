@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+.contact-details {
+    @apply mt-4 space-y-3;
+}
+
+.contact-detail {
+    @apply flex flex-col gap-1;
+}
+
+.contact-detail a {
+    @apply inline w-fit;
+}
+
+.contact-hours {
+    @apply mt-4 grid gap-2;
+}
+
+.contact-map {
+    @apply mt-4 rounded-xl border border-black/10 bg-slate-50 p-4 text-sm text-slate-600 shadow-sm;
+}
+
+.contact-form {
+    @apply mt-6 grid gap-6;
+}
+
+.contact-form-grid {
+    @apply grid gap-6 md:grid-cols-2;
+}
+
+.contact-form-row {
+    @apply flex flex-col;
+}
+
+.contact-actions {
+    @apply mt-2 flex flex-col sm:flex-row gap-3;
+}

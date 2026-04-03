@@ -1,0 +1,48 @@
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+###> phpunit/phpunit ###
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.cache
+bin/phpcs
+###< friendsofphp/php-cs-fixer ###
+
+bin/psalm
+
+# web
+/public/bundles
+/public/uploads
+/public/build
+
+# composer
+/composer.phar
+
+# npm
+node_modules
+.yarn
+
+# phpcs
+.php_cs.cache
+.php_cs
+
+# IDEs
+/.idea
+*.iml
+*~
+.web-server-pid
+
+# System files
+.DS_Store
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

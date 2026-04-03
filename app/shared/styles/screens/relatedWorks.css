@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+@import '../app.css';
+
+.related-works-container {
+    @apply mt-5 space-y-4;
+}
+
+.related-work-article {
+    @apply rounded-xl border border-black/10 bg-white/70 p-6 shadow-sm;
+}
+
+.related-work-article-content {
+    @apply flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between;
+}
+
+.related-work-article:hover {
+    @apply bg-secondary shadow-md;
+}
+
+.related-work-link-container {
+    @apply shrink-0 sm:pt-1;
+}
+
+.related-work-link {
+    @apply bg-slate-700 border-slate-500 select-none touch-manipulation inline-flex items-center
+    justify-center rounded-xl px-4 py-2 text-sm text-white shadow-sm transition
+    duration-300 focus:outline-none focus:ring-2 focus:ring-slate-300
+    active:-translate-y-1;
+}
+
+.related-work-link svg {
+    @apply opacity-60 ml-1 text-sm;
+}
+
+.author-label {
+    @apply font-bold text-slate-800;
+}

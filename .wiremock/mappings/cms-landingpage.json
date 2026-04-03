@@ -1,0 +1,64 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/cms/landingpage.json"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "cms-landingpage-response.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "OPTIONS",
+        "url": "/cms/landingpage.json"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "url": "/cms/de/landingpage.json"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "cms-landingpage-response.json",
+        "headers": {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "OPTIONS",
+        "url": "/cms/de/landingpage.json"
+      },
+      "response": {
+        "status": 204,
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    }
+  ]
+}
